@@ -15,8 +15,8 @@ public class DocumentDistance1 {
     }
 
     public static double findDocumentDistance(String d1, String d2) {
-        String [] d2split = d2.split(" ");
-        String [] d1split = d1.split(" ");
+        String[] d2split = d2.split(" ");
+        String[] d1split = d1.split(" ");
         int d1Len = d1split.length;
         int d2len = d2split.length;
         HashMap<String, Integer> map1 = findWordFrequencies(d1split);
@@ -25,11 +25,11 @@ public class DocumentDistance1 {
 
     }
 
-    public static HashMap findWordFrequencies(String [] dsplit) {
+    public static HashMap findWordFrequencies(String[] dsplit) {
         HashMap<String, Integer> map = new HashMap<>();
-        for(int i = 0; i < dsplit.length; i++) {
-            if(map.get(dsplit[i]) != null) {
-                int count  = map.get(dsplit[i]);
+        for (int i = 0; i < dsplit.length; i++) {
+            if (map.get(dsplit[i]) != null) {
+                int count = map.get(dsplit[i]);
                 map.put(dsplit[i], count++);
             } else {
                 map.put(dsplit[i], 1);
@@ -40,15 +40,15 @@ public class DocumentDistance1 {
 
     public static double findDistance(HashMap<String, Integer> map1, HashMap<String, Integer> map2, double l1, double l2) {
         double dotProduct = 0;
-        for(Map.Entry<String, Integer> entry: map1.entrySet()) {
+        for (Map.Entry<String, Integer> entry : map1.entrySet()) {
             long product = 0;
             Integer count2 = map2.get(entry.getKey());
-            if(count2 != null) {
+            if (count2 != null) {
                 product = count2 * entry.getValue();
             }
             dotProduct += product;
         }
-        double cos = dotProduct/(l1 * l2);
+        double cos = dotProduct / (l1 * l2);
         return Math.acos(cos);
     }
 
